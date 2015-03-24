@@ -259,15 +259,11 @@ namespace UnitTest
 
 		TEST_METHOD(DynArray_operator)
 		{
-			DynArray<int> array;
-
-			array.pushBack(1);
-			array.pushBack(2);
-			array.pushBack(3);
-
-			Assert::AreEqual(array[0], 1);
-			Assert::AreEqual(array[1], 2);
-			Assert::AreEqual(array[2], 3);
+			DynArray<int> new_array;
+			new_array.pushBack(1);
+			new_array.pushBack(2);
+			Assert::AreEqual(new_array[0], 1);
+			Assert::AreEqual(new_array[1], 2);
 		}
 
 		TEST_METHOD(DynArray_push_back)
