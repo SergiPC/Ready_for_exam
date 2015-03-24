@@ -53,6 +53,21 @@ public:
 	}
 
 	// Data management -------------------------------------
+
+
+	const unsigned int removeWastedMemory()
+	{
+		unsigned int wasted = 0;
+		if (num_elements < capacity)
+		{
+			wasted = capacity - num_elements;
+			allocation(num_elements);
+		}
+		return wasted;
+	}
+
+
+
 	// add item to the end of array
 	void pushBack(const KIND& value)
 	{

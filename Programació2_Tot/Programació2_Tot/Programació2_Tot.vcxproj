@@ -68,6 +68,7 @@
     <ClInclude Include="DLinkedList.h" />
     <ClInclude Include="DynArray.h" />
     <ClInclude Include="Point2D.h" />
+    <ClInclude Include="Projectile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

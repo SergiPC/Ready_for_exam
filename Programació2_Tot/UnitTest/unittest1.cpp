@@ -12,7 +12,127 @@ namespace UnitTest
 	TEST_CLASS(UnitTest1)
 	{
 	public:
+		/*
+			// EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
+			// Projectile ----------------------------------------
+			TEST_METHOD(Projectile_test)
+			{
+				Projectile p;
+
+				p.point.x = 10.0f;
+				p.point.y = 10.0f;
+
+				p.speed.x = 2.0f;
+				p.speed.y = 0.0f;
+
+				Point2D<float> current = p.GetCurrentPosition(3.0f);
+
+				Assert::AreEqual((float)16.0f, current.x, 0.00001f);
+				Assert::AreEqual((float)10.0f, current.y, 0.00001f);
+			}
+			*/
+
+		// DynArray remove wasted memory ----------------------------------------
+		TEST_METHOD(DynArray_optimizeMem)
+		{
+			DynArray<int> array(10);
+
+			array.pushBack(1);
+			array.pushBack(2);
+			array.pushBack(3);
+
+			Assert::AreEqual((unsigned int)10, array.getCapacity());
+
+			unsigned int wasted = array.removeWastedMemory();
+
+			Assert::AreEqual((unsigned int)3, array.getCapacity());
+			Assert::AreEqual((unsigned int)7, wasted);
+			Assert::AreEqual((int)1, array[0]);
+			Assert::AreEqual((int)2, array[1]);
+			Assert::AreEqual((int)3, array[2]);
+		}
+
 		
+		// DLinkedList delete few nodes ----------------------------------------
+		TEST_METHOD(DLinkedList_delNodes_mid)
+		{
+			DLinkedList<int> l;
+
+			l.addNode(1);
+			l.addNode(2);
+			l.addNode(3);
+			l.addNode(4);
+
+			l.delNodes(1, 2);
+
+			Assert::AreEqual((int)1, l.head->data);
+			Assert::AreEqual((int)4, l.bottom->data);
+			Assert::AreEqual((unsigned int)2, l.count());
+		}
+
+		// DLinkedList delete few nodes ----------------------------------------
+		TEST_METHOD(DLinkedList_delNodes_begin)
+		{
+			DLinkedList<int> l;
+
+			l.addNode(1);
+			l.addNode(2);
+			l.addNode(3);
+			l.addNode(4);
+
+			l.delNodes(0, 3);
+
+			Assert::AreEqual((int)4, l.head->data);
+			Assert::AreEqual((int)4, l.bottom->data);
+			Assert::AreEqual((unsigned int)1, l.count());
+		}
+
+		// DLinkedList delete few nodes ----------------------------------------
+		TEST_METHOD(DLinkedList_delNodes_end)
+		{
+			DLinkedList<int> l;
+
+			l.addNode(1);
+			l.addNode(2);
+			l.addNode(3);
+			l.addNode(4);
+
+			l.delNodes(2, 100);
+
+			Assert::AreEqual((int)1, l.head->data);
+			Assert::AreEqual((int)2, l.bottom->data);
+			Assert::AreEqual((unsigned int)2, l.count());
+		}
+
+		/*
+		// String prefix ----------------------------------------
+		TEST_METHOD(String_prefix)
+		{
+			CString a("1234567890");
+			CString b(50);
+			b = "hola";
+
+			a.prefix(b);
+			b.prefix("1234567890");
+
+			Assert::AreEqual(strcmp(a.getString(), "hola1234567890"), 0);
+			Assert::AreEqual(strcmp(b.getString(), "1234567890hola"), 0);
+		}
+		*/
+
+		// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
+
+
+
+
+
+
+
+
+
+
+
+
 		// Point2D ---------------------------------------------
 		TEST_METHOD(Point2D_operatoMinus)
 		{
@@ -337,5 +457,6 @@ namespace UnitTest
 			Assert::AreEqual((int)new_array.count(), 23);
 			Assert::AreEqual((int)new_array[4], 22);
 		}
+		
 	};
 }

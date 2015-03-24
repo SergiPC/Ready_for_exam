@@ -118,6 +118,68 @@ public:
 		return true;
 	}
 
+
+	// Delete some nodes -----------------------------------
+	unsigned int delNodes(int posicio, int num_nodes)
+	{
+		unsigned int deletedNodes = 0;
+		node<kdata>*	tmp_node;
+		node<kdata>*	tmp_next;
+		tmp_node = head;
+
+		for (int i = 0; i < posicio; i++) // per trobar el node
+		{
+			tmp_node = tmp_node->next;
+		}
+
+		if (tmp_node == NULL)
+		{
+			return deletedNodes;
+		}
+
+		if (num_nodes + posicio > size)
+		{
+			num_nodes = size - posicio;
+		}
+
+		for (int p = 0; p < num_nodes; p++)
+		{
+			if (tmp_node->prev != NULL)
+			{
+				tmp_node->prev->next = tmp_node->next;
+				if (tmp_node->next != NULL)
+				{
+					tmp_node->next->prev = tmp_node->prev;
+				}
+				else
+				{
+					bottom = tmp_node->prev;
+				}
+			}
+			else
+			{
+				if (tmp_node->next) // only get in if tmp_node->next != NULL
+				{
+					tmp_node->next->prev = NULL;
+					head = tmp_node->next;
+				}
+				else
+				{
+					head = bottom = NULL;
+				}
+			}
+			tmp_next = tmp_node->next;
+			delete tmp_node;
+			tmp_node = tmp_next;
+			--size;
+		}
+		return deletedNodes;
+	}
+
+
+
+
+
 	// Destroy and free for all! ---------------------------
 	void delAll()
 	{
