@@ -203,6 +203,52 @@ public:
 		return(*this);
 	}
 
+
+
+
+	// Prefix ----------------------------------------------
+	const CString& prefix(CString& other_string)
+	{
+		unsigned int needed_size = other_string.length() +length() + 1;
+		
+		if (needed_size > other_string.length())
+		{
+			char* tmp = str;
+			allocation(needed_size);
+			strcpy_s(str, size, other_string.str);
+			strcat_s(other_string.str, size, tmp);
+			delete[] tmp;
+			return(*this);
+		}
+		else
+		{
+			strcat_s(other_string.str, size, str);
+			return(*this);
+		}
+	}
+	
+	
+	
+	const CString& prefix(char* other_char)
+	{
+		if (other_char != NULL)
+		{
+			unsigned int needed_size = strlen(other_char) + length() + 1;
+			char* tmp = str;
+
+			allocation(needed_size);
+			strcpy_s(str, size, other_char);			
+
+			strcat_s(str, size, tmp);
+			delete[] tmp;
+		}
+
+		return(*this);
+	}
+
+
+
+
 	// Utilities -------------------------------------------
 	unsigned int length() const
 	{

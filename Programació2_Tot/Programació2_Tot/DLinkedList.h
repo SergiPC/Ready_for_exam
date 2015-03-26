@@ -126,6 +126,7 @@ public:
 		node<kdata>*	tmp_node;
 		node<kdata>*	tmp_next;
 		tmp_node = head;
+		unsigned int needed_size = num_nodes + posicio;
 
 		for (int i = 0; i < posicio; i++) // per trobar el node
 		{
@@ -137,7 +138,7 @@ public:
 			return deletedNodes;
 		}
 
-		if (num_nodes + posicio > size)
+		if (needed_size > size)
 		{
 			num_nodes = size - posicio;
 		}

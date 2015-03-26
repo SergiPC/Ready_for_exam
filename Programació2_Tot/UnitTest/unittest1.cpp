@@ -104,8 +104,8 @@ namespace UnitTest
 			Assert::AreEqual((unsigned int)2, l.count());
 		}
 
-		/*
-		// String prefix ----------------------------------------
+		
+		// CString prefix ----------------------------------------
 		TEST_METHOD(String_prefix)
 		{
 			CString a("1234567890");
@@ -118,7 +118,6 @@ namespace UnitTest
 			Assert::AreEqual(strcmp(a.getString(), "hola1234567890"), 0);
 			Assert::AreEqual(strcmp(b.getString(), "1234567890hola"), 0);
 		}
-		*/
 
 		// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
 
