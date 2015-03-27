@@ -128,7 +128,12 @@ public:
 		tmp_node = head;
 		unsigned int needed_size = num_nodes + posicio;
 
-		for (int i = 0; i < posicio; i++) // per trobar el node
+		if (posicio > size || num_nodes == 0) // if posicio isn't a valid number, or nummber of nodes deleted == 0 
+		{
+			return deletedNodes;
+		}
+
+		for (int i = 0; i < posicio; i++) // searching node
 		{
 			tmp_node = tmp_node->next;
 		}

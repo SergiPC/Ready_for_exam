@@ -4,6 +4,7 @@
 #include "../Programació2_Tot/CString.h"
 #include "../Programació2_Tot/DLinkedList.h"
 #include "../Programació2_Tot/DynArray.h"
+#include "../Programació2_Tot/Projectile.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -12,7 +13,7 @@ namespace UnitTest
 	TEST_CLASS(UnitTest1)
 	{
 	public:
-		/*
+
 			// EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
 			// Projectile ----------------------------------------
 			TEST_METHOD(Projectile_test)
@@ -25,12 +26,12 @@ namespace UnitTest
 				p.speed.x = 2.0f;
 				p.speed.y = 0.0f;
 
-				Point2D<float> current = p.GetCurrentPosition(3.0f);
+				Point2D<float> current = p.getCurrentPosition(3.0f);
 
 				Assert::AreEqual((float)16.0f, current.x, 0.00001f);
 				Assert::AreEqual((float)10.0f, current.y, 0.00001f);
 			}
-			*/
+		
 
 		// DynArray remove wasted memory ----------------------------------------
 		TEST_METHOD(DynArray_optimizeMem)

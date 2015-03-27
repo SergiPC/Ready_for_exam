@@ -207,24 +207,28 @@ public:
 
 
 	// Prefix ----------------------------------------------
-	const CString& prefix(CString& other_string)
+	const CString& prefix(const CString& other_string)
 	{
+		if (other_string.length() == 0)
+		{
+			return(*this);
+		}
+
+		if (length() == 0)
+		{
+			return operator=(other_string);
+		}
+
 		unsigned int needed_size = other_string.length() +length() + 1;
 		
-		if (needed_size > other_string.length())
-		{
-			char* tmp = str;
-			allocation(needed_size);
-			strcpy_s(str, size, other_string.str);
-			strcat_s(other_string.str, size, tmp);
-			delete[] tmp;
-			return(*this);
-		}
-		else
-		{
-			strcat_s(other_string.str, size, str);
-			return(*this);
-		}
+		char* tmp = str;
+		allocation(needed_size);
+
+		strcpy_s(str, size, other_string.str);
+		strcat_s(str, size, tmp);
+
+		delete[] tmp;
+		return(*this);
 	}
 	
 	
