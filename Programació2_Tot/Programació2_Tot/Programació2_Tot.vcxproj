@@ -69,6 +69,8 @@
     <ClInclude Include="DynArray.h" />
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Queue.h" />
+    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
