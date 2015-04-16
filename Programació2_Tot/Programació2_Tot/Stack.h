@@ -39,25 +39,18 @@ public:
 	}
 
 	// Some operators --------------------------------------
-	const KIND& pick(unsigned int index) const
+	const VALUE* Peek(unsigned int index) const
 	{
-		assert(index < num_elements);
-		return queue[index];
+		VALUE* result = NULL;
+
+		if (index < num_elements)
+			return result = &data[index];
+
+		return result;
 	}
+
 
 	// Data management -------------------------------------
-	// remove memory
-	const unsigned int removeWastedMemory()
-	{
-		unsigned int wasted = 0;
-		if (num_elements < capacity)
-		{
-			wasted = capacity - num_elements;
-			allocation(num_elements);
-		}
-		return wasted;
-	}
-
 	// add item to the end of array
 	void pushBack(const KIND& value)
 	{

@@ -33,7 +33,7 @@ public:
 			bottom->next = new_node;
 			bottom = new_node;
 		}
-		return(++size); // ++size increments size and returns the incremented number
+		++size; // ++size increments size and returns the incremented number
 	}
 
 	// ha de tornar el valor que eliminem!!
@@ -50,10 +50,9 @@ public:
 		return false;
 	}
 
-	const TYPE& pick(unsigned int index) const
+	const TYPE& pick() const
 	{
-		assert(index < num_elements);
-		return queue[index];
+		return head->next;
 	}
 
 	unsigned int count() const
