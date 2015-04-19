@@ -14,20 +14,20 @@ class Stack
 {
 private:
 
-	KIND*			queue; // pointer for array's memory
+	KIND*			data; // pointer for array's memory
 	unsigned int	num_elements; // number of elements
 	unsigned int	capacity; // allocated memory
 
 public:
 
 	// Constructor -----------------------------------------
-	Stack() : capacity(0), num_elements(0), queue(NULL)
+	Stack() : capacity(0), num_elements(0), data(NULL)
 	{
 		allocation(DYN_ARRAY_PRED_SIZE);
 	}
 
 
-	Stack(unsigned int new_capacity) : capacity(0), num_elements(0), queue(NULL)
+	Stack(unsigned int new_capacity) : capacity(0), num_elements(0), data(NULL)
 	{
 		allocation(new_capacity);
 	}
@@ -35,10 +35,36 @@ public:
 	// Destructor ------------------------------------------
 	~Stack()
 	{
-		delete[] queue;
+		delete[] data;
 	}
 
-	// Some operators --------------------------------------
+	// Data management -------------------------------------
+	// add item to the end of array
+	void pushBack(const KIND& value)
+	{
+		if (num_elements >= capacity)
+		{
+			allocation(capacity + DYN_ARRAY_PRED_SIZE);
+		}
+		data[num_elements++] = value;
+	}
+
+	// delete the last array item
+	bool pop(KIND& value)
+	{
+		if (num_elements > 0)
+		{
+			value = data[--num_elements];
+			return true;
+		}
+		return false;
+	}
+
+	void clear()
+	{
+		num_elements = 0;
+	}
+
 	const VALUE* Peek(unsigned int index) const
 	{
 		VALUE* result = NULL;
@@ -49,30 +75,6 @@ public:
 		return result;
 	}
 
-
-	// Data management -------------------------------------
-	// add item to the end of array
-	void pushBack(const KIND& value)
-	{
-		if (num_elements >= capacity)
-		{
-			allocation(capacity + DYN_ARRAY_PRED_SIZE);
-		}
-		queue[num_elements++] = value;
-	}
-
-	// delete the last array item
-	bool pop(KIND& value)
-	{
-		if (num_elements > 0)
-		{
-			value = queue[--num_elements];
-			return true;
-		}
-		return false;
-	}
-
-	
 	// Utilities -------------------------------------------
 	unsigned int getCapacity() const
 	{
@@ -90,20 +92,20 @@ private:
 	// Requires going private ------------------------------
 	void allocation(unsigned int new_memory)
 	{
-		KIND* new_queue = queue;
+		KIND* new_data = data;
 		capacity = new_memory;
-		queue = new KIND[capacity];
+		data = new KIND[capacity];
 		if (num_elements > capacity)
 		{
 			num_elements = capacity;
 		}
-		if (new_queue != NULL)
+		if (new_data != NULL)
 		{
 			for (unsigned int i = 0; i < num_elements; ++i)
 			{
-				queue[i] = new_queue[i];
+				data[i] = new_data[i];
 			}
-			delete[] new_queue;
+			delete[] new_data;
 		}
 	}
 };

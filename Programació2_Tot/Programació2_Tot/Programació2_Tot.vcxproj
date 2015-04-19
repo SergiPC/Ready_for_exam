@@ -72,6 +72,7 @@
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Tree.h" />
+    <ClInclude Include="Trees.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
