@@ -28,24 +28,25 @@ public:
 	{
 		//ASSERT(node);
 
-		childs.add(node);
-		node->parent = this;
+		childs.add(new_node);
+		new_node->parent = this;
 	}
 
 	bool removeChild(TreeNode* old_node)
 	{
 		//ASSERT(node);
+
 		bool ret = false;
 
-		node<TreeNode*>* item = childs.head;
-		for (; item != NULL; item = item->next)
+		node<TreeNode*>* tmp = childs.head;
+		for (; tmp != NULL; tmp = tmp->next)
 		{
-			TreeNode* child = item->data;
+			TreeNode* child = tmp->data;
 
-			if (node == child)
+			if (old_node == child)
 			{
-				childs.del(item);
-				node->parent = NULL;
+				childs.del(tmp);
+				old_node->parent = NULL;
 				ret = true;
 				break;
 			}
@@ -153,6 +154,10 @@ class Tree
 {
 public:
 
+	TreeNode<KIND>	trunk;
+
+public:
+
 	// Constructor
 	Tree(const KIND& new_data) : trunk(new_data)
 	{}
@@ -179,41 +184,43 @@ public:
 	void preOrderIterative(DLinkedList<TreeNode<KIND>*>* list)
 	{
 		Stack<TreeNode<KIND>*> stack;
-		TreeNode<KIND>* n_node = &trunk;
+		TreeNode<KIND>* new_node = &trunk;
 
-		while (n_node != NULL || stack.pop(node))
+		while (new_node != NULL || stack.pop(node))
 		{
-			list->add(n_node);
+			list->add(new_node);
 
-			node<TreeNode<KIND>*>* item = n_node->childs.bottom;
-			for (; item != n_node->childs.head; item = item->prev)
-				stack.push(item->data);
+			node<TreeNode<KIND>*>* tmp = new_node->childs.bottom;
+			for (; tmp != new_node->childs.head; tmp = tmp->prev)
+			{
+				stack.push(tmp->data)
+			}
 
-			n_node = (item != NULL) ? item->data : NULL; // IMPORTANT!!!
+			new_node = (tmp != NULL) ? tmp->data : NULL; // IMPORTANT!!!
 		}
 	}
 
 	void postOrderIterative(DLinkedList<TreeNode<KIND>*>* list)
 	{
 		Stack<TreeNode<KIND>*> stack;
-		TreeNode<KIND>* n_node = &trunk;
+		TreeNode<KIND>* new_node = &trunk;
 
-		while (n_node != NULL || stack.pop(n_node))
+		while (new_node != NULL || stack.pop(new_node))
 		{
-			node<TreeNode<KIND>*>* item = n_node->childs.bottom;
+			node<TreeNode<KIND>*>* item = new_node->childs.bottom;
 
 			if (item != NULL && list->find(item->data) == -1)
 			{
 				stack.push(node);
-				for (; item != n_node->childs.head; item = item->prev)
+				for (; item != new_node->childs.head; item = item->prev)
 					stack.push(item->data);
 
-				n_node = item->data;
+				new_node = item->data;
 			}
 			else
 			{
-				list->add(n_node);
-				n_node = NULL;
+				list->add(new_node);
+				new_node = NULL;
 			}
 		}
 	}
@@ -221,31 +228,31 @@ public:
 	void inOrderIterative(DLinkedList<TreeNode<KIND>*>* list)
 	{
 		Stack<TreeNode<KIND>*> stack;
-		TreeNode<KIND>* n_node = &trunk;
+		TreeNode<KIND>* new_node = &trunk;
 
-		while (n_node != NULL || stack.pop(n_node))
+		while (new_node != NULL || stack.pop(new_node))
 		{
-			list->add(n_node);
+			list->add(new_node);
 
-			node<TreeNode<KIND>*>* item = n_node->childs.bottom;
-			for (; item != n_node->childs.head; item = item->prev)
+			node<TreeNode<KIND>*>* item = new_node->childs.bottom;
+			for (; item != new_node->childs.head; item = item->prev)
 				stack.push(item->data);
 
-			n_node = (item != NULL) ? item->data : NULL;
+			new_node = (item != NULL) ? item->data : NULL;
 		}
 	}
 
 	void add(const KIND& data, const KIND& parent)
 	{
 		TreeNode<KIND>* p = trunk.findRecursive(parent);
-		TreeNode<KIND>* n_node = new TreeNode<KIND>(data);
-		p->addChild(n_node);
+		TreeNode<KIND>* new_node = new TreeNode<KIND>(data);
+		p->addChild(new_node);
 	}
 
 	void add(const KIND& data)
 	{
-		TreeNode<KIND>* n_node = new TreeNode<KIND>(data);
-		trunk.addChild(n_node);
+		TreeNode<KIND>* new_node = new TreeNode<KIND>(data);
+		trunk.addChild(new_node);
 	}
 
 	bool relocate(const KIND& data, const KIND& parent)
@@ -269,12 +276,12 @@ public:
 	{
 		bool ret = false;
 
-		TreeNode<KIND>* n_node = trunk.findRecursive(data);
+		TreeNode<KIND>* new_node = trunk.findRecursive(data);
 
-		if (n_node != NULL)
+		if (new_node != NULL)
 		{
 			DLinkedList<TreeNode<KIND>*> results;
-			n_node->gatherAll(&results);
+			new_node->gatherAll(&results);
 
 			node<TreeNode<KIND>*>* item = results.head;
 
@@ -305,11 +312,6 @@ public:
 				child->parent->RrmoveChild(child);
 		}
 	}
-
-public:
-
-	TreeNode<KIND>	trunk;
-
 };
 
 
