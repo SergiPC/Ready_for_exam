@@ -6,6 +6,7 @@
 #define __DYNARRAY_H__
 
 #include <assert.h>
+#define NULL 0 // for not carrying the entire library
 
 #define DYN_ARRAY_PRED_SIZE 22
 
@@ -175,6 +176,42 @@ public:
 	unsigned int count() const
 	{
 		return num_elements;
+	}
+
+	// 1) Comparar el primer amb tots.
+	// 2) No comparar més a partir del últim swap.
+	int bubbleSort()
+	{
+		int counter = 0;
+		bool done = false;
+
+		if (queue != NULL){		
+
+			while (done != true)
+			{
+				int iterations = 0;
+
+				for (unsigned int i = 0; i < num_elements - 1; i++)
+				{
+					counter++;
+					if (queue[i] > queue[i + 1])
+					{
+						swap(queue[i], queue[i + 1]);
+						iterations++;
+					}
+				}
+
+				if (iterations == 0)
+					done = true;
+			}
+		}
+		return counter;
+	}
+
+	void swap(KIND& a, KIND& b){
+		KIND tmp = a;
+		a = b;
+		b = tmp;
 	}
 
 private:

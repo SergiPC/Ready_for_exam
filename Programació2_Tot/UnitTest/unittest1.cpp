@@ -106,6 +106,7 @@ namespace UnitTest
 
 		
 		// CString prefix ----------------------------------------
+		/*
 		TEST_METHOD(String_prefix)
 		{
 			CString a("1234567890");
@@ -120,7 +121,7 @@ namespace UnitTest
 		}
 
 		// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
-
+		*/
 
 
 
@@ -455,6 +456,22 @@ namespace UnitTest
 			Assert::IsFalse(new_array.insert(4, 30));
 			Assert::AreEqual((int)new_array.count(), 23);
 			Assert::AreEqual((int)new_array[4], 22);
+		}
+		
+		TEST_METHOD(DynArray_bubblesort)
+		{
+			DynArray<int> new_array;
+
+			new_array.pushBack(3);
+			new_array.pushBack(10);
+			new_array.pushBack(1);
+			new_array.pushBack(6);
+			new_array.pushBack(7);
+
+			new_array.bubbleSort();
+
+			Assert::AreEqual((int)new_array.count(), 5);
+			Assert::AreEqual((int)new_array[3], 7);
 		}
 		
 	};
