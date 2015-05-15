@@ -6,8 +6,9 @@ using namespace std;
 
 int main()
 {
-	//cout << "A man chooses, a slave obeys!" << endl;	
+	cout << "A man chooses, a slave obeys!" << endl;	
 
+	/*
 	int numbersOf;	
 
 	DynArray<int> new_array01;
@@ -40,6 +41,7 @@ int main()
 
 	numbersOf = new_array03.combsort();
 	cout << numbersOf << endl;
+	*/
 
 	getchar();
 }

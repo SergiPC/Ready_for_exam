@@ -42,6 +42,7 @@ public:
 	}
 
 
+
 	CString(const CString& other_string)
 	{
 		allocation(other_string.size);
@@ -106,6 +107,7 @@ public:
 	}
 
 
+
 	bool operator!=(const CString& other_string) const
 	{
 		return(strcmp(other_string.str, str) != 0);
@@ -124,6 +126,22 @@ public:
 		}
 	}
 
+	// Trim -----------------------------------------------
+	void trim()
+	{
+		// cut right
+		char* end = str + size;
+		while (*--end == ' ') *end = '\0';
+
+		// cut left
+		char* start = str;
+		while (*++start == ' ');
+
+		size = strlen(start);
+
+		for (int i = 0; i < size + 1; ++i)
+			str[i] = start[i];
+	}
 
 	const CString& operator=(const CString& other_string)
 	{
@@ -203,6 +221,7 @@ public:
 		return(*this);
 	}
 
+	
 
 
 

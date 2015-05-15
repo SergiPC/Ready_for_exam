@@ -13,7 +13,7 @@ namespace UnitTest
 	TEST_CLASS(UnitTest1)
 	{
 	public:
-
+		/*
 			// EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
 			// Projectile ----------------------------------------
 			TEST_METHOD(Projectile_test)
@@ -107,7 +107,7 @@ namespace UnitTest
 
 		
 		// CString prefix ----------------------------------------
-		/*
+		
 		TEST_METHOD(String_prefix)
 		{
 			CString a("1234567890");
@@ -122,7 +122,7 @@ namespace UnitTest
 		}
 
 		// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
-		*/
+		
 
 
 
@@ -226,8 +226,16 @@ namespace UnitTest
 
 			Assert::IsTrue(f.distanceTo(p) == 2);
 		}
-		
+		*/
 		// CString ---------------------------------------------
+		TEST_METHOD(CString_trim)
+		{
+			CString s("    Metal Gear   ");
+			s.trim();
+
+			Assert::AreEqual((int)s.length(), 10);
+		}
+
 		TEST_METHOD(CString_constructor)
 		{
 			CString s;
@@ -333,7 +341,7 @@ namespace UnitTest
 			s1.clear();
 			Assert::AreEqual((int)s1.length(), 0);
 		}
-
+		/*
 		// DLinkedList -----------------------------------------
 		TEST_METHOD(DLinkedList_add_node)
 		{
@@ -416,7 +424,7 @@ namespace UnitTest
 			Assert::AreEqual((int)new_array.count(), 0);
 		}
 
-		/*
+		
 		TEST_METHOD(DynArray_at)
 		{
 			DynArray<int> new_array;
@@ -441,7 +449,7 @@ namespace UnitTest
 		Assert::AreEqual((int)new_array.getCapacity(), 1008);
 		Assert::AreEqual((int)new_array.count(), 999);
 		}
-		*/
+		
 
 		TEST_METHOD(DynArray_insert)
 		{
@@ -474,6 +482,6 @@ namespace UnitTest
 			Assert::AreEqual((int)new_array.count(), 5);
 			Assert::AreEqual((int)new_array[3], 7);
 		}
-		
+		*/
 	};
 }

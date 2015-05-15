@@ -65,6 +65,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BubbleSort.h" />
+    <ClInclude Include="Cercle.h" />
     <ClInclude Include="CString.h" />
     <ClInclude Include="DLinkedList.h" />
     <ClInclude Include="DynArray.h" />
