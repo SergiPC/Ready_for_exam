@@ -208,6 +208,95 @@ public:
 		return counter;
 	}
 
+	int bubbleSortOptimized()
+	{
+		int counter = 0;
+		bool done = false;
+		unsigned int d = num_elements;
+
+		if (queue != NULL){
+
+			while (done != true)
+			{
+				int iterations = 0;				
+
+				for (unsigned int i = 0; i < d - 1; i++)
+				{
+					counter++;
+					if (queue[i] > queue[i + 1])
+					{
+						swap(queue[i], queue[i + 1]);
+						iterations++;
+					}
+				}
+				d--;
+
+				if (iterations == 0)
+					done = true;
+			}
+		}
+		return counter;
+	}
+
+	int combsort(){
+		int counter = 0;
+		bool swapped = true;
+		int gap = num_elements;
+		float interval = 1.3f;
+
+		if (queue != NULL){
+
+			while (swapped && gap >= 1)
+			{
+				swapped = false;
+
+				if (gap > 1)
+					gap = (gap / interval);
+
+				else
+					gap = 1;
+
+				for (unsigned int i = 0; i + gap < num_elements - 1; i++)
+				{
+					counter++;
+					if (queue[i] > queue[i + gap])
+					{
+						swap(queue[i], queue[i + gap]);
+						swapped = true;
+					}
+				}
+			}
+		}
+		return counter;
+	}
+
+	/*
+	function combsort11(array input)
+    gap:= input.size //inicializar tamaño de espacio
+    
+    loop until gap = 1 and swaps = 0
+        //actualizar el valor del espacio para el siguiente rastreo
+        if gap > 1
+            gap:= gap / 1.3
+            if gap = 10 or gap = 9
+                gap:= 11
+            end if
+        end if
+        
+        i:= 0
+        swaps:= 0 //véase ordenamiento de burbuja para una explicación
+        //un único "rastreo" sobre la lista de entrada
+        loop until i + gap >= array.size
+            if array[i] > array[i+gap]
+                swap (array[i], array[i+gap])
+                swaps:= swaps + 1
+            end if
+            i:= i + 1
+        end loop
+    end loop
+end function
+	*/
+
 	void swap(KIND& a, KIND& b){
 		KIND tmp = a;
 		a = b;
