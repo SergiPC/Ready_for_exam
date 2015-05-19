@@ -226,7 +226,7 @@ namespace UnitTest
 
 			Assert::IsTrue(f.distanceTo(p) == 2);
 		}
-		*/
+		
 		// CString ---------------------------------------------
 		TEST_METHOD(CString_trim)
 		{
@@ -341,7 +341,8 @@ namespace UnitTest
 			s1.clear();
 			Assert::AreEqual((int)s1.length(), 0);
 		}
-		/*
+
+		*/
 		// DLinkedList -----------------------------------------
 		TEST_METHOD(DLinkedList_add_node)
 		{
@@ -373,6 +374,35 @@ namespace UnitTest
 			Assert::AreEqual((int)new_list.count(), 4);
 		}
 
+		TEST_METHOD(DLinkedList_operator)
+		{
+			DLinkedList<int> new_list;
+
+			new_list.addNode(22);
+			new_list.addNode(5);
+			new_list.addNode(21);
+			new_list.addNode(4);
+
+			Assert::AreEqual((int)new_list[2], 21);
+		}
+		
+		TEST_METHOD(DLinkedList_bubbleSort)
+		{
+			DLinkedList<int> new_list;
+			
+			new_list.addNode(22); 
+			new_list.addNode(5); 
+			new_list.addNode(21); 
+			new_list.addNode(4);
+
+			new_list.bubbleSort();
+
+			Assert::AreEqual((int)new_list[3], 22);
+		}
+		
+
+
+		/*
 		// DynArray --------------------------------------------
 		TEST_METHOD(DynArray_creator)
 		{

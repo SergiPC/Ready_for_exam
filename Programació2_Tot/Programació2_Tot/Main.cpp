@@ -1,5 +1,5 @@
 #include "Point2D.h"
-#include "DynArray.h"0
+#include "DynArray.h"
 #include "iostream"
 
 using namespace std;

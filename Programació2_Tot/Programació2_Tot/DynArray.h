@@ -178,6 +178,18 @@ public:
 		return num_elements;
 	}
 
+
+	// Flip ------------------------------------------------
+	void flip()
+	{
+		KIND* start = &queue[0];
+		KIND* end = &queue[num_elements - 1];
+
+		while (start < end)
+			swap(*start++, *end--);
+	}
+
+
 	// 1) Comparar el primer amb tots.
 	// 2) No comparar més a partir del últim swap.
 	int bubbleSort()
@@ -297,7 +309,8 @@ public:
 end function
 	*/
 
-	void swap(KIND& a, KIND& b){
+	void swap(KIND& a, KIND& b)
+	{
 		KIND tmp = a;
 		a = b;
 		b = tmp;

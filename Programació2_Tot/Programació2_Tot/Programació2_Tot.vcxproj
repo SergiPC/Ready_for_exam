@@ -64,7 +64,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BubbleSort.h" />
     <ClInclude Include="Cercle.h" />
     <ClInclude Include="CString.h" />
     <ClInclude Include="DLinkedList.h" />

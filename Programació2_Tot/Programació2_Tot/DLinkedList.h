@@ -5,6 +5,7 @@
 #ifndef __DLINKEDLIST_H__
 #define __DLINKEDLIST_H__
 
+#include <assert.h>
 #define NULL 0 // for not carrying the entire library
 
 
@@ -62,6 +63,95 @@ public:
 	{
 		return(size);
 	}
+
+	// Operator[] ------------------------------------------
+	const kdata& operator[](unsigned int index) const
+	{
+		long			pos;
+		node<kdata>*	tmp;
+
+		pos = 0;
+		tmp = head;
+
+		while (tmp != NULL)
+		{
+			if (pos == index)
+			{
+				break;
+			}
+
+			++pos;
+			tmp = tmp->next;
+		}
+
+		assert(tmp);
+	}
+
+	kdata& operator[](unsigned int index)
+	{
+		long			pos;
+		node<kdata>*	tmp;
+
+		pos = 0;
+		tmp = head;
+
+		while (tmp != NULL)
+		{
+			if (pos == index)
+			{
+				break;
+			}
+
+			++pos;
+			tmp = tmp->next;
+		}
+
+		//assert(tmp);
+		return tmp->data;
+	}
+
+	
+	// BubbleSort ------------------------------------------
+	int bubbleSort()
+	{
+		int ret = 0;
+		bool swapped = true;
+
+		while (swapped)
+		{
+			swapped = false;
+			node<kdata>*	tmp = head;
+		
+			while (tmp != NULL && tmp->next != NULL)
+			{
+				++ret;
+
+				if (tmp->data > tmp->next->data)
+				{
+					swap(tmp, tmp->next); // Swap Nodes -----
+					swapped = true;
+				}
+
+				tmp = tmp->next;
+			}
+		}
+		return ret;
+	}
+
+	void swap(node<kdata>*& a, node<kdata>*& b){
+		node<kdata>* tmp = a;
+		
+		a->next->prev = b;
+		a->prev->next = b;
+		a->next = b->next;
+		a->prev = b->prev;
+
+		b->next->prev = a;
+		b->prev->next = a;
+		b->next = tmp->next;
+		b->prev = tmp->prev;
+	}
+	
 
 	// Add new node at bottom ------------------------------
 	unsigned int addNode(const kdata& new_data)
