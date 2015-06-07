@@ -1,0 +1,47 @@
+#include "Point2D.h"
+#include "DynArray.h"
+#include "iostream"
+
+using namespace std;
+
+int main()
+{
+	cout << "A man chooses, a slave obeys!" << endl;
+
+	/*
+	int numbersOf;
+
+	DynArray<int> new_array01;
+	DynArray<int> new_array02;
+	DynArray<int> new_array03;
+
+	// Bubble normal --------------------------------------
+	for (int i = 0; i < 10000; ++i){
+
+	new_array01.pushBack(rand() % 10001);
+	}
+
+	numbersOf = new_array01.bubbleSort();
+	cout << numbersOf << endl;
+
+	// Bubble optimitzat ----------------------------------
+	for (int i = 0; i < 10000; ++i){
+
+	new_array02.pushBack(rand() % 10001);
+	}
+
+	numbersOf = new_array02.bubbleSortOptimized();
+	cout << numbersOf << endl;
+
+	// Combsort -------------------------------------------
+	for (int i = 0; i < 10000; ++i){
+
+	new_array03.pushBack(rand() % 10001);
+	}
+
+	numbersOf = new_array03.combsort();
+	cout << numbersOf << endl;
+	*/
+
+	getchar();
+}
