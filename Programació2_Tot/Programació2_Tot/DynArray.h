@@ -142,8 +142,8 @@ public:
 		return true;
 	}
 
-	/*
-	KIND* At(unsigned int index)
+	
+	KIND* at(unsigned int index)
 	{
 		KIND* result = NULL;
 
@@ -163,7 +163,6 @@ public:
 
 		return result;
 	}
-	*/
 
 
 	// Utilities -------------------------------------------
@@ -324,10 +323,12 @@ private:
 		KIND* new_queue = queue;
 		capacity = new_memory;
 		queue = new KIND[capacity];
+
 		if (num_elements > capacity)
 		{
 			num_elements = capacity;
 		}
+
 		if (new_queue != NULL)
 		{
 			for (unsigned int i = 0; i < num_elements; ++i)

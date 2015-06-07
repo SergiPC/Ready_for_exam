@@ -13,7 +13,7 @@ namespace UnitTest
 	TEST_CLASS(UnitTest1)
 	{
 	public:
-		/*
+		
 			// EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
 			// Projectile ----------------------------------------
 			TEST_METHOD(Projectile_test)
@@ -342,7 +342,7 @@ namespace UnitTest
 			Assert::AreEqual((int)s1.length(), 0);
 		}
 
-		*/
+		
 		// DLinkedList -----------------------------------------
 		TEST_METHOD(DLinkedList_add_node)
 		{
@@ -401,18 +401,18 @@ namespace UnitTest
 		}
 		
 
-
-		/*
 		// DynArray --------------------------------------------
 		TEST_METHOD(DynArray_creator)
 		{
 			DynArray<int> new_array;
+
 			Assert::AreEqual((int)new_array.getCapacity(), DYN_ARRAY_PRED_SIZE);
 		}
 
 		TEST_METHOD(DynArray_creator_capacity)
 		{
 			DynArray<int> new_array(4);
+
 			Assert::AreEqual((int)new_array.getCapacity(), 4);
 		}
 
@@ -421,6 +421,7 @@ namespace UnitTest
 			DynArray<int> new_array;
 			new_array.pushBack(1);
 			new_array.pushBack(2);
+
 			Assert::AreEqual(new_array[0], 1);
 			Assert::AreEqual(new_array[1], 2);
 		}
@@ -430,6 +431,7 @@ namespace UnitTest
 			DynArray<int> new_array;
 			new_array.pushBack(1);
 			new_array.pushBack(2);
+
 			Assert::AreEqual((int)new_array.getCapacity(), DYN_ARRAY_PRED_SIZE);
 			Assert::AreEqual((int)new_array.count(), 2);
 		}
@@ -441,6 +443,7 @@ namespace UnitTest
 			new_array.pushBack(1);
 			new_array.pushBack(2);
 			new_array.pop(d);
+
 			Assert::AreEqual((int)new_array.count(), 1);
 		}
 
@@ -450,6 +453,7 @@ namespace UnitTest
 			new_array.pushBack(1);
 			new_array.pushBack(2);
 			new_array.clear();
+
 			Assert::AreEqual((int)new_array.getCapacity(), DYN_ARRAY_PRED_SIZE);
 			Assert::AreEqual((int)new_array.count(), 0);
 		}
@@ -460,9 +464,10 @@ namespace UnitTest
 			DynArray<int> new_array;
 			new_array.pushBack(1);
 			new_array.pushBack(2);
+
 			Assert::AreEqual(*(new_array.at(0)), 1);
 			Assert::AreEqual(*(new_array.at(1)), 2);
-			Assert::IsNull(new_array.At(2));
+			Assert::IsNull(new_array.at(2));
 		}
 
 		TEST_METHOD(DynArray_resize)
@@ -471,7 +476,7 @@ namespace UnitTest
 
 		for(int i = 0; i < 999; ++i)
 		{
-		new_array.pushBack(i);
+			new_array.pushBack(i);
 		}
 
 		Assert::AreEqual(*(new_array.at(900)), 900);
@@ -512,6 +517,5 @@ namespace UnitTest
 			Assert::AreEqual((int)new_array.count(), 5);
 			Assert::AreEqual((int)new_array[3], 7);
 		}
-		*/
 	};
 }
