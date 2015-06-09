@@ -63,6 +63,53 @@ public:
 	}
 
 
+
+
+
+
+	// EXAMEN FINAL PROGRAMACIÓ 2 (9 JUNY 2015)
+	// DLinkedList :: Mètode a la classe de llista enllaçada que insereixi una altre llista enllaçada després
+	// de un index donat.Si la llista està buida ha de afegir tots els elements : ----------------------------
+	//insertAfter(0, mylist2)
+
+	const DLinkedList<DITTO>& insertAfter(unsigned int index, const DLinkedList<DITTO>& other_list)
+	{
+		DListNode<DITTO>*	tmp = head;
+		DListNode<DITTO>*	tmp2;
+		DListNode<DITTO>*   other_tmp = other_list.head;
+
+		if (tmp == NULL)
+		{
+			while (other_tmp != NULL)
+			{
+				addNode(other_tmp->data);
+				other_tmp = other_tmp->next;
+			}
+		}
+
+		else
+		{
+			for (unsigned int i = 0; i < index; i++)
+				tmp = tmp->next;
+
+			tmp->next->prev = other_list.bottom;
+			other_list.bottom->next = tmp->next;
+
+			tmp->next = other_list.head;
+			other_list.head->prev = tmp;
+		}
+
+		return(*this);
+	}
+	// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (9 JUNY 2015)
+
+
+
+
+
+	
+
+
 	// Some operators --------------------------------------
 	const DITTO& operator[](unsigned int index) const
 	{

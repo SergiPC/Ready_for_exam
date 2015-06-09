@@ -19,6 +19,141 @@ namespace UnitTest
 	TEST_CLASS(UnitTest1)
 	{
 	public:
+
+		// EXAMEN FINAL PROGRAMACIÓ 2 (9 JUNY 2015)
+		
+		// String :: Mètode per tallar una cadena rebent la posició inicial i final: -----------------------------
+		TEST_METHOD(CString_cut)
+		{
+			CString s1("Hola mundo");
+
+			s1.cut(2, 5);
+
+			Assert::AreEqual((int)strcmp("Houndo", s1.getString()), 0);
+
+			s1.cut(3, 0);
+
+			Assert::AreEqual((int)strcmp("Hou", s1.getString()), 0);
+		}
+
+
+		// DynArray :: Operador += al DynArray que concatena dos arrays: -----------------------------------------
+		TEST_METHOD(DynArray_Operator_concat)
+		{
+			DynArray<int> array(5);
+
+			array.pushBack(1);
+			array.pushBack(2);
+			array.pushBack(4);
+			array.pushBack(5);
+			array.pushBack(8);
+
+			DynArray<int> array2;
+
+			array2.pushBack(991);
+			array2.pushBack(992);
+			array2.pushBack(993);
+
+			array += array2;
+
+			Assert::AreEqual((int)array.count(), 8);
+			Assert::AreEqual((int)array[0], 1);
+			Assert::AreEqual((int)array[1], 2);
+			Assert::AreEqual((int)array[2], 4);
+			Assert::AreEqual((int)array[3], 5);
+			Assert::AreEqual((int)array[4], 8);
+			Assert::AreEqual((int)array[5], 991);
+			Assert::AreEqual((int)array[6], 992);
+			Assert::AreEqual((int)array[7], 993);
+		}
+
+		
+		// DLinkedList :: Mètode a la classe de llista enllaçada que insereixi una altre llista enllaçada després
+		// de un index donat.Si la llista està buida ha d'afegir tots els elements : ----------------------------
+		TEST_METHOD(ListInsert)
+		{
+			DLinkedList<int> mylist;
+
+			DLinkedList<int> mylist2;
+
+			mylist2.addNode(1);
+			mylist2.addNode(2);
+			mylist2.addNode(3);
+
+			DLinkedList<int> mylist3;
+
+			mylist3.addNode(4);
+			mylist3.addNode(5);
+			mylist3.addNode(6);
+
+			mylist.insertAfter(0, mylist2);
+
+			Assert::AreEqual(mylist[0], 1);
+			Assert::AreEqual(mylist[1], 2);
+			Assert::AreEqual(mylist[2], 3);
+
+			
+			mylist.insertAfter(1, mylist3);
+
+			Assert::AreEqual(mylist[0], 1);
+			Assert::AreEqual(mylist[1], 2);
+			Assert::AreEqual(mylist[2], 4);
+			Assert::AreEqual(mylist[3], 5);
+			Assert::AreEqual(mylist[4], 6);
+			Assert::AreEqual(mylist[5], 3);
+
+			mylist.insertAfter(0, mylist3);
+
+			Assert::AreEqual(mylist[0], 1);
+			Assert::AreEqual(mylist[1], 4);
+			Assert::AreEqual(mylist[2], 5);
+			Assert::AreEqual(mylist[3], 6);
+			Assert::AreEqual(mylist[4], 2);
+			Assert::AreEqual(mylist[5], 4);
+			Assert::AreEqual(mylist[6], 5);
+			Assert::AreEqual(mylist[7], 6);
+			Assert::AreEqual(mylist[8], 3);
+
+			Assert::IsTrue((DListNode<int>*) &mylist[0] == mylist.head);
+			Assert::IsTrue((DListNode<int>*) &mylist[8] == mylist.bottom);
+			*/
+		}
+
+		/*
+		// GeneralTree :: Mètode recursiu i mètode iteratiu per sumar totes les dades de un arbre: ---------------
+		TEST_METHOD(TreeCalcAddition)
+		{
+			p2Tree<int> tree(1);
+
+			tree.Add(2, 1);
+			tree.Add(3, 1);
+			tree.Add(4, 1);
+			tree.Add(5, 2);
+			tree.Add(6, 2);
+			tree.Add(7, 2);
+			tree.Add(8, 4);
+			tree.Add(9, 4);
+			tree.Add(10, 9);
+
+			Assert::AreEqual((int)tree.CalcAdditionRecursive(), 55);
+			Assert::AreEqual((int)tree.CalcAdditionIterative(), 55);
+		}
+
+
+		// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (9 JUNY 2015)
+
+
+
+
+
+
+
+		
+
+
+
+
+
 		
 		// EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
 		// Projectile ----------------------------------------
@@ -511,7 +646,7 @@ namespace UnitTest
 			Assert::AreEqual((int)new_array.count(), 999);
 		}
 
-		/*
+		
 		TEST_METHOD(DynArray_insert)
 		{
 			DynArray<int> new_array;
@@ -527,7 +662,7 @@ namespace UnitTest
 			Assert::AreEqual((int)new_array.count(), 23);
 			Assert::AreEqual((int)new_array[4], 22);
 		}
-		*/
+		
 
 		TEST_METHOD(DynArray_bubblesort)
 		{
