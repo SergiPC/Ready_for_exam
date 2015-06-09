@@ -792,5 +792,81 @@ namespace UnitTest
 			Assert::AreEqual((int)p->data, 210);
 			Assert::IsNull(p2);
 		}
+
+		/*
+		// QEUE ----------------------------------------------
+		TEST_METHOD(Qeue_test)
+		{
+			p2Qeue<int> fifo;
+
+
+			fifo.Push(11);
+			fifo.Push(22);
+			fifo.Push(33);
+
+			Assert::AreEqual((int)fifo.Count(), 3);
+			Assert::AreEqual((int)*(fifo.Peek(1)), 22);
+
+
+			int result;
+			bool r = fifo.Pop(result);
+		}
+
+		TEST_METHOD(Qeue2_test)
+		{
+			p2Qeue2<int> fifo;
+
+
+			fifo.Push(11);
+			fifo.Push(22);
+			fifo.Push(33);
+
+			Assert::AreEqual((int)fifo.Count(), 3);
+			Assert::AreEqual((int)*(fifo.Peek(1)), 22);
+
+
+			int result;
+			bool r = fifo.Pop(result);
+		}
+
+		// STACK ---------------------------------------------
+		TEST_METHOD(Stack_test)
+		{
+			p2Stack<int> lifo;
+
+			lifo.Push(10);
+			lifo.Push(20);
+			lifo.Push(30);
+			lifo.Push(40);
+
+			Assert::AreEqual((int)lifo.Count(), 4);
+			Assert::AreEqual((int)*(lifo.Peek(1)), 20);
+
+			int result;
+			bool r = lifo.Pop(result);
+
+			Assert::AreEqual((int)result, 40);
+			Assert::AreEqual((int)lifo.Count(), 3);
+		}
+
+		TEST_METHOD(Stack2_test)
+		{
+			p2Stack2<int> lifo;
+
+			lifo.Push(10);
+			lifo.Push(20);
+			lifo.Push(30);
+			lifo.Push(40);
+
+			Assert::AreEqual((int)lifo.Count(), 4);
+			Assert::AreEqual((int)*(lifo.Peek(1)), 20);
+
+			int result;
+			bool r = lifo.Pop(result);
+
+			Assert::AreEqual((int)result, 40);
+			Assert::AreEqual((int)lifo.Count(), 3);
+		}
+		*/
 	};
 }
