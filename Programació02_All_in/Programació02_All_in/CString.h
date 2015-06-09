@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
+#include <assert.h>
 
 #define TMP_STRING_SIZE 2204
 
@@ -31,8 +32,8 @@ public:
 
 	CString(unsigned int new_size)
 	{
-		if (size > 0)
-			alloc(size);
+		if (new_size > 0)
+			alloc(new_size);
 
 		else
 			alloc(1);
@@ -81,9 +82,7 @@ public:
 	virtual ~CString()
 	{
 		if (str != NULL)
-		{
 			delete[] str;
-		}
 	}
 
 
@@ -197,16 +196,16 @@ public:
 	void trim()
 	{
 		// cut right
-		char* end = str;
+		char* end = str + size;
 		while (*--end == ' ') *end = '\0';
 
 		// cut left
 		char* start = str;
 		while (*++start == ' ');
 
-		size = strlen(start);
+		unsigned int s = strlen(start);
 
-		for (int i = 0; i < size + 1; ++i)
+		for (unsigned int i = 0; i < s + 1; ++i)
 			str[i] = start[i];
 	}
 
@@ -251,6 +250,74 @@ public:
 
 		delete[] tmp;
 		return(*this);
+	}
+
+
+	unsigned int substitute(const char* src, const char *dst)
+	{
+		assert(src);
+		assert(dst);
+
+		unsigned int instances = find(src);
+
+		if (instances > 0)
+		{
+			unsigned int src_len = strlen(src);
+			unsigned int dst_len = strlen(dst);
+			unsigned int diff = dst_len - src_len;
+			unsigned int needed_size = 1 + strlen(str) + (diff * instances);
+
+			if (size < needed_size)
+			{
+				char* tmp = str;
+				alloc(needed_size);
+				strcpy_s(str, size, tmp);
+				delete tmp;
+			}
+
+			for (unsigned int i = 0; i < size - src_len; ++i)
+			{
+				if (strncmp(src, &str[i], src_len) == 0)
+				{
+					// make room
+					for (unsigned int j = strlen(str) + diff; j > i + diff; --j)
+					{
+						str[j] = str[j - diff];
+					}
+
+					// copy
+					for (unsigned int j = 0; j < dst_len; ++j)
+					{
+						str[i++] = dst[j];
+					}
+				}
+			}
+
+		}
+
+		return instances;
+	}
+
+
+	unsigned int find(const char* string) const
+	{
+		unsigned int ret = 0;
+
+		if (string != NULL)
+		{
+			unsigned int len = strlen(string);
+
+			for (unsigned int i = 0; i < size - len; ++i)
+			{
+				if (strncmp(string, &str[i], len) == 0)
+				{
+					i += len;
+					++ret;
+				}
+			}
+		}
+
+		return ret;
 	}
 
 

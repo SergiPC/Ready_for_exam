@@ -7,11 +7,14 @@
 
 #include <stdio.h>
 
-template<struct DITTO>
+template<class DITTO>
 struct Queue_item
 {
 	DITTO				value;
 	Queue_item<DITTO>*	next;
+
+	inline Queue_item(const DITTO& _value) : value(_value), next(NULL)
+	{}
 };
 
 
@@ -29,7 +32,7 @@ public:
 	// Destructor ------------------------------------------
 	~Queue()
 	{
-		Clear();
+		clear();
 	}
 
 
@@ -46,13 +49,13 @@ public:
 
 		else
 			last->next = new_node;
-
-		++size; // ++size increments size and returns the incremented number
 	}
 
 
 	bool pop(DITTO& item)
 	{
+		bool result = false;
+
 		Queue_item<DITTO>* last = getLast();
 
 		if (last != NULL)
@@ -64,12 +67,10 @@ public:
 
 			item = tmp->next->value;
 			delete tmp->next;
-
-			return true;
-			return(--size); // ++size increments size and returns the incremented number
+			result = true;
 		}
 
-		return false;
+		return result;
 	}
 
 

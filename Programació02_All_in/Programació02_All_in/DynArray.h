@@ -6,9 +6,12 @@
 #define __DYNARRAY_H__
 
 #include <assert.h>
-#define NULL 0 // for not carrying the entire library
+#include "Utilities.h"
 
+#define NULL 0 // for not carrying the entire library
 #define DYN_ARRAY_PRED_SIZE 22
+
+
 
 template<class DITTO>
 class DynArray
@@ -90,6 +93,7 @@ public:
 			value = queue[--num_elements];
 			return true;
 		}
+
 		return false;
 	}
 
@@ -113,6 +117,7 @@ public:
 	}	
 
 
+	/*
 	bool insert(const DITTO& value, unsigned int position)
 	{
 		if (position > num_elements)
@@ -137,14 +142,24 @@ public:
 	}
 
 
-	void flip()
+	bool insert(const DynArray<DITTO>& array, unsigned int position)
 	{
-		DITTO* start = &queue[0];
-		DITTO* end = &queue[num_elements - 1];
+		if (position > num_elements)
+			return false;
 
-		while (start < end)
-			swap(*start++, *end--);
+		if (num_elements + array.num_elements > capacity)
+			alloc(num_elements + array.num_elements + 1);
+
+		for (unsigned int i = position; i < position + array.num_elements; ++i)
+		{
+			data[i + array.num_elements] = data[i];
+			data[i] = array[i - position];
+			++num_elements;
+		}
+
+		return true;
 	}
+	*/
 
 
 	// Set in order ----------------------------------------
@@ -152,61 +167,51 @@ public:
 	// 2) No comparar més a partir del últim swap.
 	int bubbleSort()
 	{
-		int counter = 0;
-		bool done = false;
+		int ret = 0;
+		bool swapped = true;
 
-		if (queue != NULL){
+		while (swapped)
+		{
+			swapped = false;
 
-			while (done != true)
+			for (unsigned int i = 0; i < num_elements - 2; ++i)
 			{
-				int iterations = 0;
-
-				for (unsigned int i = 0; i < num_elements - 1; i++)
+				++ret;
+				if (queue[i] > queue[i + 1])
 				{
-					counter++;
-					if (queue[i] > queue[i + 1])
-					{
-						swap(queue[i], queue[i + 1]);
-						iterations++;
-					}
+					swap(queue[i], queue[i + 1]);
+					swapped = true;
 				}
-
-				if (iterations == 0)
-					done = true;
 			}
 		}
-		return counter;
+
+		return ret;
 	}
 
 
 	int bubbleSortOptimized()
 	{
-		int counter = 0;
-		bool done = false;
-		unsigned int d = num_elements;
+		int ret = 0;
+		unsigned int count;
+		unsigned int last = num_elements - 2;
 
-		if (queue != NULL){
+		while (last > 0)
+		{
+			count = last;
+			last = 0;
 
-			while (done != true)
+			for (unsigned int i = 0; i < count; ++i)
 			{
-				int iterations = 0;
-
-				for (unsigned int i = 0; i < d - 1; i++)
+				++ret;
+				if (queue[i] > queue[i + 1])
 				{
-					counter++;
-					if (queue[i] > queue[i + 1])
-					{
-						swap(queue[i], queue[i + 1]);
-						iterations++;
-					}
+					swap(queue[i], queue[i + 1]);
+					last = i;
 				}
-				d--;
-
-				if (iterations == 0)
-					done = true;
 			}
 		}
-		return counter;
+
+		return ret;
 	}
 
 
@@ -244,6 +249,16 @@ public:
 	}
 
 
+	void flip()
+	{
+		DITTO* start = &queue[0];
+		DITTO* end = &queue[num_elements - 1];
+
+		while (start < end)
+			swap(*start++, *end--);
+	}
+
+
 	// Utilities -------------------------------------------
 	void clear()
 	{
@@ -262,14 +277,14 @@ public:
 		return num_elements;
 	}
 
-
+	/*
 	void swap(DITTO& a, DITTO& b)
 	{
 		DITTO tmp = a;
 		a = b;
 		b = tmp;
 	}
-
+	*/
 
 	DITTO* at(unsigned int index)
 	{
@@ -298,7 +313,7 @@ private:
 	void alloc(unsigned int new_capacity)
 	{
 		DITTO* new_queue = queue;
-		capacity = new_memory;
+		capacity = new_capacity;
 		queue = new DITTO[capacity];
 
 		if (num_elements > capacity)

@@ -9,6 +9,8 @@
 
 #include "DLinkedList.h"
 #include "Stack.h"
+#include "DynArray.h"
+#include <assert.h>
 
 // Tree node -------------------------------------------
 template<class DITTO>
@@ -28,12 +30,16 @@ public:
 
 	void addChild(TreeNode* new_node)
 	{
+		assert(new_node);
+
 		childs.addNode(new_node);
 		new_node->parent = this;
 	}
 
 	bool removeChild(TreeNode* old_node)
 	{
+		assert(old_node);
+
 		bool exit = false;
 		DListNode<TreeNode*>* tmp = childs.head; // create a tmp to point to the first node
 
@@ -216,41 +222,56 @@ public:
 		}
 	}
 	
-
+	/*
 	// In order iterative ----------------------------------
 	void inOrderIterative(DLinkedList<TreeNode<DITTO>*>* new_list)
 	{
-		Stack<TreeNode<DITTO>*>	new_stack;
-		TreeNode<DITTO>*		new_node = &root;
+		Stack<TreeNode<DITTO>*>		new_stack;
+		TreeNode<DITTO>*			new_node = NULL;
+		DynArray<TreeNode<DITTO>*>	childs;
 
-		unsigned int middle = 0;
-		new_stack.pushBack(new_node);
+		childs.pushBack(&root);
 
-		while (new_node != NULL)
+		while (childs.count() > 0 || new_stack.pop(new_node))
 		{
-			DListNode<TreeNode<DITTO>*>* tmp = new_node->childs.head;
-			unsigned int middle = new_node->childs.count() / 2;
-
-			if (tmp != NULL)
+			if (childs.count() > 0)
 			{
-				for (unsigned int i = 0; i < middle; ++i, tmp = tmp->next)
-					new_stack.pushBack(tmp->data);
+				for (int i = childs.count() - 1; i >= 0; --i)
+					new_stack.pushBack(childs[i]);
 
-				new_node = new_node->childs.head->data;
+				new_node = childs[0];
+				childs.clear();
+
+				// Add all the childs on the right
+				if (new_node != NULL)
+				{
+					DListNode<TreeNode<DITTO>*>* item = new_node->childs.head;
+					DListNode<TreeNode<DITTO>*>* end = new_node->childs.at(new_node->childs.count() / 2);
+
+					while (item != end)
+					{
+						childs.pushBack(item->data);
+						item = item->next;
+					}
+				}
 			}
-
 			else
 			{
 				new_list->addNode(new_node);
-				new_stack.pop(new_node);
-				new_node = NULL;
 
-				//new_list->addNode(new_node);
-				//new_stack.pop(new_node);
-				//new_node = tmp->next->data;				
+				// Add all childs on the right
+				DListNode<TreeNode<DITTO>*>* item = new_node->childs.at(new_node->childs.count() / 2);
+
+				while (item != NULL)
+				{
+					childs.pushBack(item->data);
+					item = item->next;
+				}
 			}
 		}
 	}
+	*/
+
 
 	void add(const DITTO& new_data, const DITTO& new_parent)
 	{

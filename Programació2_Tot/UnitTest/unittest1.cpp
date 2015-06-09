@@ -472,17 +472,16 @@ namespace UnitTest
 
 		TEST_METHOD(DynArray_resize)
 		{
-		DynArray<int> new_array;
+			DynArray<int> new_array;
 
-		for(int i = 0; i < 999; ++i)
-		{
-			new_array.pushBack(i);
-		}
+			for(int i = 0; i < 999; ++i)
+			{
+				new_array.pushBack(i);
+			}
 
-		Assert::AreEqual(*(new_array.at(900)), 900);
-		Assert::IsNull(new_array.at(1000));
-		Assert::AreEqual((int)new_array.getCapacity(), 1008);
-		Assert::AreEqual((int)new_array.count(), 999);
+			Assert::AreEqual(*(new_array.at(900)), 900);
+			Assert::IsNull(new_array.at(1000));
+			Assert::AreEqual((int)new_array.count(), 999);
 		}
 		
 
@@ -500,22 +499,6 @@ namespace UnitTest
 			Assert::IsFalse(new_array.insert(4, 30));
 			Assert::AreEqual((int)new_array.count(), 23);
 			Assert::AreEqual((int)new_array[4], 22);
-		}
-		
-		TEST_METHOD(DynArray_bubblesort)
-		{
-			DynArray<int> new_array;
-
-			new_array.pushBack(3);
-			new_array.pushBack(10);
-			new_array.pushBack(1);
-			new_array.pushBack(6);
-			new_array.pushBack(7);
-
-			new_array.bubbleSort();
-
-			Assert::AreEqual((int)new_array.count(), 5);
-			Assert::AreEqual((int)new_array[3], 7);
 		}
 	};
 }

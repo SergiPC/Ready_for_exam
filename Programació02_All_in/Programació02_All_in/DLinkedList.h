@@ -6,6 +6,8 @@
 #define __DLINKEDLIST_H__
 
 #include <assert.h>
+#include "Utilities.h"
+
 #define NULL 0 // for not carrying the entire library
 
 
@@ -80,6 +82,8 @@ public:
 		}
 
 		assert(tmp);
+
+		return(tmp->data);
 	}
 
 	DITTO& operator[](unsigned int index)
@@ -99,8 +103,23 @@ public:
 			tmp = tmp->next;
 		}
 
-		//assert(tmp);
+		assert(tmp);
+
 		return tmp->data;
+	}
+
+
+	const DLinkedList<DITTO>& operator +=(const  DLinkedList<DITTO>& other_list)
+	{
+		DListNode<DITTO>*   tmp = other_list.head;
+
+		while (tmp != NULL)
+		{
+			addNode(tmp->data);
+			tmp = tmp->next;
+		}
+
+		return(*this);
 	}
 
 
@@ -254,7 +273,7 @@ public:
 
 				if (tmp->data > tmp->next->data)
 				{
-					swap(tmp, tmp->next); // Swap Nodes -----
+					swap(tmp->data, tmp->next->data); // Swap Nodes -----
 					swapped = true;
 				}
 
@@ -269,22 +288,6 @@ public:
 	unsigned int count()
 	{
 		return(size);
-	}
-
-
-	void swap(DListNode<DITTO>*& a, DListNode<DITTO>*& b)
-	{
-		DListNode<DITTO>** tmp = a;
-
-		a->next->prev = b;
-		a->prev->next = b;
-		a->next = b->next;
-		a->prev = b->prev;
-
-		b->next->prev = a;
-		b->prev->next = a;
-		b->next = tmp->next;
-		b->prev = tmp->prev;
 	}
 
 
@@ -304,6 +307,41 @@ public:
 			tmp = tmp->next;
 		}
 		return (-1);
+	}
+
+
+	const DLinkedList<DITTO>* at(unsigned int index) const
+	{
+		long					pos = 0;
+		DListNode<DITTO>*		tmp = head;
+
+		while (tmp != NULL)
+		{
+			if (pos++ == index)
+				break;
+
+			tmp = tmp->next;
+		}
+
+		return tmp;
+	}
+
+	
+	// access to a node in a position in the list
+	DLinkedList<DITTO>* at(unsigned int index)
+	{
+		long					pos = 0;
+		DListNode<DITTO>*		tmp = head;
+
+		while (tmp != NULL)
+		{
+			if (pos++ == index)
+				break;
+
+			tmp = tmp->next;
+		}
+
+		return tmp;
 	}
 
 };

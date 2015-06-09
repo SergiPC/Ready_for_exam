@@ -6,7 +6,7 @@
 #define __CERCLE_H__
 
 #include "Point2D.h"
-#define PI 3,1416
+#define PI 3.141521f
 
 template<class DITTO>
 class Cercle
@@ -24,7 +24,7 @@ public:
 
 	DITTO getArea() const
 	{
-		return = radius * radius * PI;
+		return radius * radius * PI;
 	}
 
 
