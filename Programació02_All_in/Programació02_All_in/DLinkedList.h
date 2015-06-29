@@ -72,34 +72,36 @@ public:
 	// de un index donat.Si la llista està buida ha de afegir tots els elements : ----------------------------
 	//insertAfter(0, mylist2)
 
-	const DLinkedList<DITTO>& insertAfter(unsigned int index, const DLinkedList<DITTO>& other_list)
+	void insertAfter(unsigned int index, const DLinkedList<DITTO>& other_list)
 	{
-		DListNode<DITTO>*	tmp = head;
-		DListNode<DITTO>*	tmp2;
-		DListNode<DITTO>*   other_tmp = other_list.head;
+		DListNode<DITTO>*	tmp_my_list = at(index);
+		DListNode<DITTO>*	tmp_other_list = other_list.head;
 
-		if (tmp == NULL)
+		while (tmp_other_list != NULL)
 		{
-			while (other_tmp != NULL)
-			{
-				addNode(other_tmp->data);
-				other_tmp = other_tmp->next;
-			}
+			DListNode<DITTO>* new_item = new DListNode<DITTO>(tmp_other_list->data);
+
+			//new_item->next = (tmp_my_list) ? tmp_other_list->next : NULL;
+			if (tmp_my_list == NULL)
+				new_item->next = tmp_other_list->next;
+
+			if (new_item->next != NULL)
+				new_item->next->prev = new_item;
+
+			else
+				bottom = new_item;
+
+			new_item->prev = tmp_my_list;
+
+			if (new_item->prev != NULL)
+				new_item->prev->next = new_item;
+
+			else
+				head = new_item;
+
+			tmp_my_list = new_item;
+			tmp_other_list = tmp_other_list->next;
 		}
-
-		else
-		{
-			for (unsigned int i = 0; i < index; i++)
-				tmp = tmp->next;
-
-			tmp->next->prev = other_list.bottom;
-			other_list.bottom->next = tmp->next;
-
-			tmp->next = other_list.head;
-			other_list.head->prev = tmp;
-		}
-
-		return(*this);
 	}
 	// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (9 JUNY 2015)
 
@@ -357,7 +359,7 @@ public:
 	}
 
 
-	const DLinkedList<DITTO>* at(unsigned int index) const
+	const DListNode<DITTO>* at(unsigned int index) const
 	{
 		long					pos = 0;
 		DListNode<DITTO>*		tmp = head;
@@ -375,7 +377,7 @@ public:
 
 	
 	// access to a node in a position in the list
-	DLinkedList<DITTO>* at(unsigned int index)
+	DListNode<DITTO>* at(unsigned int index)
 	{
 		long					pos = 0;
 		DListNode<DITTO>*		tmp = head;

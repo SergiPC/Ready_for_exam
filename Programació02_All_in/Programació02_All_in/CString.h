@@ -85,23 +85,22 @@ public:
 
 	// EXAMEN FINAL PROGRAMACIÓ 2 (9 JUNY 2015)
 	// String :: Mètode per tallar una cadena rebent la posició inicial i final: -----------------------------
-	void cut(unsigned int initial_num, unsigned int final_num)
+	bool cut(unsigned int initial_num, unsigned int final_num)
 	{
-		if (final_num == 0)
-		{
-			str[initial_num] = '\0';
-			size = initial_num + 1;
-		}
+		unsigned int len = length();
 
-		else
-		{
-			unsigned int n_numbers = final_num - initial_num + 1;
+		if (final_num >= len || final_num == 0)
+			final_num = len - 1;
 
-			for (unsigned int i = initial_num; i < size - n_numbers; i++)
-				str[i] = str[i + n_numbers];
+		if (initial_num > len || final_num <= initial_num)
+			return false;
 
-			size = getCapacity() - n_numbers;
-		}
+		unsigned int n_numbers = final_num - initial_num + 1;
+
+		for (unsigned int i = initial_num; i < size - n_numbers; i++)
+			str[i] = str[i + n_numbers];
+
+		return true;
 	}
 	// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (9 JUNY 2015)
 

@@ -53,19 +53,13 @@ public:
 	// EXAMEN FINAL PROGRAMACIÓ 2 (9 JUNY 2015)
 	// DynArray :: Operador += al DynArray que concatena dos arrays: -----------------------------------------
 
-	const DynArray& operator+=(const DynArray& other_array)
+	const DynArray<DITTO>& operator+=(const DynArray<DITTO>& other_array)
 	{
-		if (other_array.count() + count() + 1 > capacity)
-		{
-			alloc(other_array.count() + count() + 1);
-		}
+		if (other_array.num_elements + num_elements > capacity)
+			alloc(other_array.num_elements + num_elements);
 
-		unsigned int j = 0;
-
-		for (unsigned int i = count(); j < other_array.count(); i++, j++)
-			queue[i] = other_array.queue[j];
-
-		num_elements = other_array.count() + count();
+		for (unsigned int i = 0; i < other_array.num_elements; i++)
+			queue[num_elements++] = other_array.queue[i];
 
 		return(*this);
 	}

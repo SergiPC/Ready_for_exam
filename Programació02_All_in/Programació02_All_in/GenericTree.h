@@ -58,6 +58,43 @@ public:
 		return exit;
 	}
 
+
+
+
+
+
+
+	// EXAMEN FINAL PROGRAMACIÓ 2 (9 JUNY 2015)
+	// GeneralTree :: Mètode recursiu i mètode iteratiu per sumar totes les dades de un arbre: ---------------
+
+	DITTO calcAddition()
+	{
+		DListNode<TreeNode*>* item = childs.head;
+		DITTO result = data;
+
+		for (; item != NULL; item = item->next)
+		{
+			TreeNode* child = item->data;
+
+			result += child->calcAddition();
+		}
+
+		return result;
+	}
+
+	// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (9 JUNY 2015)
+
+
+
+
+
+
+
+
+
+
+
+
 	// Pre order recursive ---------------------------------
 	// 1) process root
 	// 2) recursively process children from "left to right"
@@ -165,6 +202,45 @@ public:
 	{
 		root.inOrderRecursive(new_list);
 	}
+
+
+
+	// EXAMEN FINAL PROGRAMACIÓ 2 (9 JUNY 2015)
+	// GeneralTree :: Mètode recursiu i mètode iteratiu per sumar totes les dades de un arbre: ---------------
+
+	DITTO calcAdditionRecursive()
+	{
+		return root.calcAddition();
+	}
+
+	DITTO calcAdditionIterative()
+	{
+		DITTO result = 0;
+		Stack<TreeNode<DITTO>*> stack;
+		TreeNode<DITTO>* node = &root;
+
+		while (node != NULL || stack.pop(node))
+		{
+			result += node->data;
+
+			DListNode<TreeNode<DITTO>*>* item = node->childs.bottom;
+
+			for (; item != node->childs.head; item = item->prev)
+				stack.pushBack(item->data);
+
+			node = (item != NULL) ? item->data : NULL;
+		}
+
+		return result;
+	}
+
+	// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (9 JUNY 2015)
+
+
+
+
+
+
 
 
 	// Pre order iterative ---------------------------------

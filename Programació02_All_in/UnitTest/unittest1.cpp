@@ -101,7 +101,7 @@ namespace UnitTest
 			Assert::AreEqual(mylist[3], 5);
 			Assert::AreEqual(mylist[4], 6);
 			Assert::AreEqual(mylist[5], 3);
-
+			
 			mylist.insertAfter(0, mylist3);
 
 			Assert::AreEqual(mylist[0], 1);
@@ -116,27 +116,26 @@ namespace UnitTest
 
 			Assert::IsTrue((DListNode<int>*) &mylist[0] == mylist.head);
 			Assert::IsTrue((DListNode<int>*) &mylist[8] == mylist.bottom);
-			*/
 		}
 
-		/*
+		
 		// GeneralTree :: Mètode recursiu i mètode iteratiu per sumar totes les dades de un arbre: ---------------
 		TEST_METHOD(TreeCalcAddition)
 		{
-			p2Tree<int> tree(1);
+			Tree<int> tree(1);
 
-			tree.Add(2, 1);
-			tree.Add(3, 1);
-			tree.Add(4, 1);
-			tree.Add(5, 2);
-			tree.Add(6, 2);
-			tree.Add(7, 2);
-			tree.Add(8, 4);
-			tree.Add(9, 4);
-			tree.Add(10, 9);
+			tree.add(2, 1);
+			tree.add(3, 1);
+			tree.add(4, 1);
+			tree.add(5, 2);
+			tree.add(6, 2);
+			tree.add(7, 2);
+			tree.add(8, 4);
+			tree.add(9, 4);
+			tree.add(10, 9);
 
-			Assert::AreEqual((int)tree.CalcAdditionRecursive(), 55);
-			Assert::AreEqual((int)tree.CalcAdditionIterative(), 55);
+			Assert::AreEqual((int)tree.calcAdditionRecursive(), 55);
+			Assert::AreEqual((int)tree.calcAdditionIterative(), 55);
 		}
 
 
@@ -153,7 +152,7 @@ namespace UnitTest
 
 
 
-
+		/*
 		
 		// EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
 		// Projectile ----------------------------------------
