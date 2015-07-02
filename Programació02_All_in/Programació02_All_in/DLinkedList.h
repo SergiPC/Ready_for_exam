@@ -45,7 +45,7 @@ public:
 
 private:
 
-	unsigned int		size;
+	unsigned int		size; // number of nodes
 
 public:
 
@@ -81,9 +81,9 @@ public:
 		{
 			DListNode<DITTO>* new_item = new DListNode<DITTO>(tmp_other_list->data);
 
-			//new_item->next = (tmp_my_list) ? tmp_other_list->next : NULL;
-			if (tmp_my_list == NULL)
-				new_item->next = tmp_other_list->next;
+			//new_item->next = (tmp_my_list) ? tmp_my_list->next : NULL;	
+			if (tmp_my_list != NULL)
+				new_item->next = tmp_my_list->next;
 
 			if (new_item->next != NULL)
 				new_item->next->prev = new_item;
@@ -103,6 +103,7 @@ public:
 			tmp_other_list = tmp_other_list->next;
 		}
 	}
+
 	// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (9 JUNY 2015)
 
 
@@ -228,27 +229,25 @@ public:
 
 
 	// Delete some nodes
-	unsigned int delNodes(int posicio, int num_nodes)
+	unsigned int delNodes(int position, int num_nodes)
 	{
-		DListNode<DITTO>*	tmp_node;
+		DListNode<DITTO>*	tmp_node = head;
 		DListNode<DITTO>*	tmp_next;
 
 		unsigned int deletedNodes = 0;
-		unsigned int needed_size = num_nodes + posicio;
+		unsigned int needed_size = num_nodes + position;
 
-		tmp_node = head;		
-
-		if (posicio > size || num_nodes == 0) // if posicio isn't a valid number, or nummber of nodes deleted == 0 
+		if (position > size || num_nodes == 0) // if position isn't a valid number, or nummber of nodes deleted == 0 
 			return deletedNodes;
 
-		for (int i = 0; i < posicio; i++) // searching node
+		for (int i = 0; i < position; i++) // searching node
 			tmp_node = tmp_node->next;
 
 		if (tmp_node == NULL)
 			return deletedNodes;
 
 		if (needed_size > size)
-			num_nodes = size - posicio;
+			num_nodes = size - position;
 
 		for (int p = 0; p < num_nodes; p++)
 		{
@@ -366,10 +365,18 @@ public:
 
 		while (tmp != NULL)
 		{
-			if (pos++ == index)
+			if (pos == index)
 				break;
 
+			++pos;
 			tmp = tmp->next;
+
+			/*
+			if (pos++ == index)
+			break;
+
+			tmp = tmp->next;
+			*/
 		}
 
 		return tmp;
@@ -384,10 +391,18 @@ public:
 
 		while (tmp != NULL)
 		{
+			if (pos == index)
+				break;
+
+			++pos;
+			tmp = tmp->next;
+
+			/*
 			if (pos++ == index)
 				break;
 
 			tmp = tmp->next;
+			*/
 		}
 
 		return tmp;

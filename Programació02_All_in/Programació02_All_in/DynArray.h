@@ -20,7 +20,7 @@ private:
 
 	DITTO*			queue; // pointer for array's memory
 	unsigned int	num_elements; // number of elements
-	unsigned int	capacity; // allocated memory
+	unsigned int	capacity; // allocated memory (no s'ha de posar '\0')
 
 
 public:
@@ -147,7 +147,7 @@ public:
 	}	
 
 
-	/*
+	
 	bool insert(const DITTO& value, unsigned int position)
 	{
 		if (position > num_elements)
@@ -189,7 +189,7 @@ public:
 
 		return true;
 	}
-	*/
+	
 
 
 	// Set in order ----------------------------------------
@@ -307,14 +307,14 @@ public:
 		return num_elements;
 	}
 
-	/*
+	
 	void swap(DITTO& a, DITTO& b)
 	{
 		DITTO tmp = a;
 		a = b;
 		b = tmp;
 	}
-	*/
+	
 
 	DITTO* at(unsigned int index)
 	{

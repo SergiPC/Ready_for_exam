@@ -2,6 +2,8 @@
 //              CString class
 // --------------------------------------------
 
+// Strings are objects that represent sequences of characters.
+
 #ifndef __CSTRING_H__
 #define __CSTRING_H__
 
@@ -16,7 +18,7 @@ class CString
 {
 private:
 	
-	unsigned int	size;
+	unsigned int	size;  // size == requiered memory, including "\0"
 	char*			str;
 
 public:
@@ -92,12 +94,12 @@ public:
 		if (final_num >= len || final_num == 0)
 			final_num = len - 1;
 
-		if (initial_num > len || final_num <= initial_num)
+		if (initial_num >= len || final_num <= initial_num)
 			return false;
 
 		unsigned int n_numbers = final_num - initial_num + 1;
 
-		for (unsigned int i = initial_num; i < size - n_numbers; i++)
+		for (unsigned int i = initial_num; i <= len - n_numbers; i++)
 			str[i] = str[i + n_numbers];
 
 		return true;
@@ -232,7 +234,7 @@ public:
 	void trim()
 	{
 		// cut right
-		char* end = str + size;
+		char* end = str + strlen(str);
 		while (*--end == ' ') *end = '\0';
 
 		// cut left
@@ -363,6 +365,7 @@ public:
 	}
 
 
+	// Number of characters
 	unsigned int length() const
 	{
 		return(strlen(str));
@@ -383,9 +386,9 @@ public:
 
 private:
 
-	void alloc(unsigned int new_size)
+	void alloc(unsigned int requiered_memory)
 	{
-		size = new_size;
+		size = requiered_memory;
 		str = new char[size];
 	}
 };

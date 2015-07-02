@@ -2,6 +2,8 @@
 //              Stack class
 // --------------------------------------------
 
+// LIFO implementation as a dynamic array
+
 #ifndef __Stack_H__
 #define __Stack_H__
 

@@ -2,6 +2,8 @@
 //                 Queue class
 // --------------------------------------------
 
+// FIFO implementation with single linked list
+
 #ifndef __QUEUE_H__
 #define __QUEUE_H_
 
@@ -37,6 +39,7 @@ public:
 
 
 	// Data management -------------------------------------
+	// push new item
 	void push(const DITTO& new_data)
 	{
 		Queue_item<DITTO>*	new_node;
@@ -52,6 +55,7 @@ public:
 	}
 
 
+	// Deletes an item from the list
 	bool pop(DITTO& item)
 	{
 		bool result = false;
@@ -74,6 +78,7 @@ public:
 	}
 
 
+	// Reads one of the values
 	const DITTO& peek(unsigned int index) const
 	{
 		unsigned int i = 0;
@@ -107,6 +112,7 @@ public:
 
 
 	// Utilities -------------------------------------------
+	// Get Size
 	unsigned int count() const
 	{
 		unsigned int result = 0;
@@ -119,6 +125,7 @@ public:
 	}
 
 
+	// Get last item
 	Queue_item<DITTO>* getLast()
 	{
 		Queue_item<DITTO>* tmp = head;

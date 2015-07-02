@@ -152,7 +152,6 @@ namespace UnitTest
 
 
 
-		/*
 		
 		// EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
 		// Projectile ----------------------------------------
@@ -262,6 +261,9 @@ namespace UnitTest
 		}
 
 		// FINAL EXAMEN PARCIAL PROGRAMACIÓ 2 (24 MARÇ 2015)
+
+
+
 
 
 
@@ -630,21 +632,6 @@ namespace UnitTest
 			Assert::IsNull(new_array.at(2));
 		}
 
-		TEST_METHOD(DynArray_resize)
-		{
-			DynArray<int> new_array;
-
-			for (int i = 0; i < 999; ++i)
-			{
-				new_array.pushBack(i);
-			}
-
-			Assert::AreEqual(*(new_array.at(900)), 900);
-			Assert::IsNull(new_array.at(1000));
-			Assert::AreEqual((int)new_array.getCapacity(), 1008);
-			Assert::AreEqual((int)new_array.count(), 999);
-		}
-
 		
 		TEST_METHOD(DynArray_insert)
 		{
@@ -667,16 +654,19 @@ namespace UnitTest
 		{
 			DynArray<int> new_array;
 
-			new_array.pushBack(3);
-			new_array.pushBack(10);
+			new_array.pushBack(5);
+			new_array.pushBack(4);
 			new_array.pushBack(1);
-			new_array.pushBack(6);
-			new_array.pushBack(7);
+			new_array.pushBack(2);
+			new_array.pushBack(8);
 
 			new_array.bubbleSort();
 
-			Assert::AreEqual((int)new_array.count(), 5);
-			Assert::AreEqual((int)new_array[3], 7);
+			Assert::AreEqual((int)new_array[0], 1);
+			Assert::AreEqual((int)new_array[1], 2);
+			Assert::AreEqual((int)new_array[2], 4);
+			Assert::AreEqual((int)new_array[3], 5);
+			Assert::AreEqual((int)new_array[4], 8);
 		}
 
 

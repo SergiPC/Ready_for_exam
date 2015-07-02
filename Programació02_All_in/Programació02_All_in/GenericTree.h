@@ -205,6 +205,7 @@ public:
 
 
 
+
 	// EXAMEN FINAL PROGRAMACIÓ 2 (9 JUNY 2015)
 	// GeneralTree :: Mètode recursiu i mètode iteratiu per sumar totes les dades de un arbre: ---------------
 
@@ -228,7 +229,13 @@ public:
 			for (; item != node->childs.head; item = item->prev)
 				stack.pushBack(item->data);
 
-			node = (item != NULL) ? item->data : NULL;
+			if (item != NULL)
+				node = item->data;
+
+			else
+				node = NULL;
+
+			//node = (item != NULL) ? item->data : NULL;
 		}
 
 		return result;

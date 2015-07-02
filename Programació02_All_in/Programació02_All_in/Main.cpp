@@ -8,12 +8,13 @@ int main()
 {
 	cout << "A man chooses, a slave obeys!" << endl;
 
-	/*
+
 	int numbersOf;
 
 	DynArray<int> new_array01;
 	DynArray<int> new_array02;
 	DynArray<int> new_array03;
+
 
 	// Bubble normal --------------------------------------
 	for (int i = 0; i < 10000; ++i){
@@ -24,6 +25,7 @@ int main()
 	numbersOf = new_array01.bubbleSort();
 	cout << numbersOf << endl;
 
+
 	// Bubble optimitzat ----------------------------------
 	for (int i = 0; i < 10000; ++i){
 
@@ -33,6 +35,7 @@ int main()
 	numbersOf = new_array02.bubbleSortOptimized();
 	cout << numbersOf << endl;
 
+
 	// Combsort -------------------------------------------
 	for (int i = 0; i < 10000; ++i){
 
@@ -41,7 +44,8 @@ int main()
 
 	numbersOf = new_array03.combsort();
 	cout << numbersOf << endl;
-	*/
+	
+
 
 	getchar();
 }
