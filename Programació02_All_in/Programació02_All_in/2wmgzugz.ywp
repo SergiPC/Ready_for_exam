@@ -51,20 +51,18 @@ public:
 
 	// EXAMEN RECUPERACIÓ PROGRAMACIÓ 2 (3 JULIOL 2015)
 	// Mètode DynArray::PrefixList per inserir una llista enllaçada al principi:
-	void prefixList(DLinkedList<DITTO>& other_list)
+	const DynArray& prefixList(DLinkedList<DITTO>& other_list)
 	{
-		if (other_list.count() + count() > getCapacity())
-			alloc(other_list.count() + count());
+		if (other_list.count() + num_elements > capacity)
+			alloc(other_list.count() + num_elements);
 
-		for (unsigned int j = capacity - 1; j >= other_list.count(); j--)
-			queue[j] = queue[j - other_list.count()];
+		for (unsigned int j = capacity - 1; j > 0; j--)
+			queue[j] = queue[j - 1];
 
 		for (unsigned int i = 0; i < other_list.count(); i++)
-		{
 			queue[i] = other_list[i];
-			num_elements++;
-		}			
 	}
+
 
 	// FINAL EXAMEN RECUPERACIÓ PROGRAMACIÓ 2 (3 JULIOL 2015)
 
@@ -101,14 +99,14 @@ public:
 	// Some operators --------------------------------------
 	DITTO& operator[](unsigned int index)
 	{
-		//assert(index < num_elements);
+		assert(index < num_elements);
 		return queue[index];
 	}
 
 
 	const DITTO& operator[](unsigned int index) const
 	{
-		//assert(index < num_elements);
+		assert(index < num_elements);
 		return queue[index];
 	}
 

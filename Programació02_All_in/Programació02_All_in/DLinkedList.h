@@ -67,6 +67,42 @@ public:
 
 
 
+	// EXAMEN RECUPERACIÓ PROGRAMACIÓ 2 (3 JULIOL 2015)
+	// Mètode List::Flip de la llista enllaçada per girar-la l’ordre:
+
+	void flip()
+	{
+		DListNode<DITTO>*	tmp = head;
+		DListNode<DITTO>*	tmp2 = bottom;
+
+		unsigned int middle = size / 2;
+
+		for (unsigned int i = 0; i < middle; i++)
+		{
+			swap(tmp->data, tmp2->data);
+
+			tmp = tmp->next;
+			tmp2 = tmp2->prev;
+		}
+		
+	}
+
+
+	// FINAL EXAMEN RECUPERACIÓ PROGRAMACIÓ 2 (3 JULIOL 2015)
+
+
+
+
+	void swap(DITTO& a, DITTO& b)
+	{
+		DITTO tmp = a;
+		a = b;
+		b = tmp;
+	}
+
+
+
+
 	// EXAMEN FINAL PROGRAMACIÓ 2 (9 JUNY 2015)
 	// DLinkedList :: Mètode a la classe de llista enllaçada que insereixi una altre llista enllaçada després
 	// de un index donat.Si la llista està buida ha de afegir tots els elements : ----------------------------

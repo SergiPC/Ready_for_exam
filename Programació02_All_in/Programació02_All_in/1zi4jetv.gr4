@@ -96,32 +96,29 @@ public:
 				n_vocals++;
 		}
 
-	
-		unsigned int requiered_memory = length() + n_vocals + 1;
-
-		if (requiered_memory > size)
+		if (n_vocals = !0)
 		{
-			char* tmp = str;
-			alloc(requiered_memory);
-			strcpy_s(str, size, tmp);
-			delete[] tmp;
-		}
-
-		
-		for (unsigned int p = 0; p < size - 1; p++)
-		{
-			if (str[p] == 'a' || str[p] == 'e' || str[p] == 'p' || str[p] == 'o' || str[p] == 'u' || str[p] == 'A' || str[p] == 'E' || str[p] == 'I' || str[p] == 'O' || str[p] == 'U')
+			if (length() + n_vocals + 1 > size)
 			{
-				for (unsigned int j = size - 2; j > p; j--)
-				{
-					str[j] = str[j - 1];
-				}						
+				char* tmp = str;
+				alloc(length() + n_vocals + 1);
+				strcpy_s(str, size, tmp);
+				delete[] tmp;
+			}
 
-				p++;
+			for (unsigned int i = 0; i < size;)
+			{
+				if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' || str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U')
+				{
+					for (unsigned int j = length() - 1; j > i; j--)
+						str[j] = str[j - 1];
+
+					i++;
+				}
+				i++;
 			}
 		}
-	
-		return (n_vocals);
+		return n_vocals;
 	}
 
 	// FINAL EXAMEN RECUPERACIÓ PROGRAMACIÓ 2 (3 JULIOL 2015)

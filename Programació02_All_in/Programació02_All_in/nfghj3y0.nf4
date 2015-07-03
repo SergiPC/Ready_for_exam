@@ -5,7 +5,7 @@
 #include "Rectangle.h"
 #include "iostream"
 
-#define TEST(a)	(a)? printf("Test" #a "SUCCES\n"): printf("Test" #a "FAILURE\n");
+#define TEST(a)	(a)? printf("Test" #a "SUCCES"): printf("Test" #a "FAILURE");
 
 using namespace std;
 
@@ -39,32 +39,6 @@ int main()
 
 	TEST(s.doubleVocals() == 4);
 	TEST(s == "Hoolaa Muundoo");
-
-
-
-	// 3)
-	// Mètode List::Flip de la llista enllaçada per girar-la l’ordre:
-
-	DLinkedList<int> list;
-
-	list.addNode(1);
-	list.addNode(2);
-	list.addNode(3);
-	list.addNode(4);
-	list.addNode(5);
-	list.addNode(6);
-	list.addNode(7);
-
-	list.flip();
-
-	TEST(list[0] == 7);
-	TEST(list[1] == 6);
-	TEST(list[2] == 5);
-	TEST(list[3] == 4);
-	TEST(list[4] == 3);
-	TEST(list[5] == 2);
-	TEST(list[6] == 1);
-
 
 
 
@@ -117,7 +91,28 @@ int main()
 
 
 
+// 3)
+// Mètode List::Flip de la llista enllaçada per girar-la l’ordre:
 
+DLinkedList<int> list;
+
+list.addNode(1);
+list.addNode(2);
+list.addNode(3);
+list.addNode(4);
+list.addNode(5);
+list.addNode(6);
+list.addNode(7);
+
+list.flip();
+
+TEST(list[0] == 7);
+TEST(list[1] == 6);
+TEST(list[2] == 5);
+TEST(list[3] == 4);
+TEST(list[4] == 3);
+TEST(list[5] == 2);
+TEST(list[6] == 1);
 
 
 
