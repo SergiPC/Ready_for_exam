@@ -47,6 +47,15 @@ public:
 
 
 
+	// Add its data to a linked list.
+	void addToDLinkedList(DLinkedList<DITTO>& other_list)
+	{
+		for (unsigned int i = 0; i < num_elements; i++)
+		{
+			other_list.addNode(queue[i]);
+		}
+	}
+
 
 
 	// EXAMEN RECUPERACIÓ PROGRAMACIÓ 2 (3 JULIOL 2015)

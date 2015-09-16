@@ -11,6 +11,48 @@ using namespace std;
 
 int main()
 {
+	cout << "A man chooses, a slave obeys!" << endl;
+
+	
+	int numbersOf;
+
+	DynArray<int> new_array01;
+	DynArray<int> new_array02;
+	DynArray<int> new_array03;
+
+
+	// Bubble normal --------------------------------------
+	for (int i = 0; i < 10000; ++i){
+
+	new_array01.pushBack(rand() % 10001);
+	}
+
+	numbersOf = new_array01.bubbleSort();
+	cout << numbersOf << endl;
+
+
+	// Bubble optimitzat ----------------------------------
+	for (int i = 0; i < 10000; ++i){
+
+	new_array02.pushBack(rand() % 10001);
+	}
+
+	numbersOf = new_array02.bubbleSortOptimized();
+	cout << numbersOf << endl;
+
+
+	// Combsort -------------------------------------------
+	for (int i = 0; i < 10000; ++i){
+
+	new_array03.pushBack(rand() % 10001);
+	}
+
+	numbersOf = new_array03.combsort();
+	cout << numbersOf << endl;
+
+	getchar();
+
+	/*
 	int a = 1;
 	TEST(a == 1);
 	TEST(a == 5);
@@ -106,81 +148,5 @@ int main()
 	TEST(array[11] == 500);
 
 	// FINAL EXAMEN RECUPERACIÓ PROGRAMACIÓ 2 (3 JULIOL 2015)
-
-	getchar();
+	*/
 }
-
-
-
-/*
-
-
-
-
-
-
-
-
-// FINAL EXAMEN RECUPERACIÓ PROGRAMACIÓ 2 (3 JULIOL 2015)
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//cout << "A man chooses, a slave obeys!" << endl;
-
-/*
-int numbersOf;
-
-DynArray<int> new_array01;
-DynArray<int> new_array02;
-DynArray<int> new_array03;
-
-
-// Bubble normal --------------------------------------
-for (int i = 0; i < 10000; ++i){
-
-new_array01.pushBack(rand() % 10001);
-}
-
-numbersOf = new_array01.bubbleSort();
-cout << numbersOf << endl;
-
-
-// Bubble optimitzat ----------------------------------
-for (int i = 0; i < 10000; ++i){
-
-new_array02.pushBack(rand() % 10001);
-}
-
-numbersOf = new_array02.bubbleSortOptimized();
-cout << numbersOf << endl;
-
-
-// Combsort -------------------------------------------
-for (int i = 0; i < 10000; ++i){
-
-new_array03.pushBack(rand() % 10001);
-}
-
-numbersOf = new_array03.combsort();
-cout << numbersOf << endl;
-
-*/

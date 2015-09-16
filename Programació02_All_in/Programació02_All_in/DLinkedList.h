@@ -210,6 +210,17 @@ public:
 
 
 	// Data management -------------------------------------
+	// Add its data to a DynArray.
+	void addToDynArray(DynArray<DITTO>& other_array)
+	{
+		if (other_array.num_elements + size > other_array.capacity)
+			other_array.alloc(other_array.num_elements + size);
+
+		for (unsigned int i = other_array.num_elements, unsigned int j = 0; i < (other_array.num_elements + size); i++, j++)
+			other_array.queue[other_array.num_elements++] = [j];
+	}
+
+
 	// Add new node at bottom
 	unsigned int addNode(const DITTO& new_data)
 	{
